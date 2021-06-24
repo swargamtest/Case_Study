@@ -1,0 +1,34 @@
+{
+  "name": "Case_study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "env-cmd -f ./User/configuration/dev.env nodemon User/src/index.js",
+    "dev-1": "env-cmd -f ./Admin/configuration/dev.env nodemon Admin/src/index.js",
+    "testUser": "env-cmd -f ./User/configuration/test.env mocha User/src/test/test.js --timeout 10000",
+    "play":"env-cmd -f ./User/configuration/test.env node playground.js",
+    "testAdmin": "env-cmd -f ./Admin/configuration/test.env mocha Admin/src/test/test.js --timeout 10000"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amadeus": "^5.7.0",
+    "bcryptjs": "^2.4.3",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.14",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.0.1",
+    "nodemon": "^2.0.7"
+  }
+}
