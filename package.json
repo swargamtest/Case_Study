@@ -7,9 +7,8 @@
     "dev": "env-cmd -f ./User/configuration/dev.env nodemon User/src/index.js",
     "dev-1": "env-cmd -f ./Admin/configuration/dev.env nodemon Admin/src/index.js",
     "testUser": "env-cmd -f ./User/configuration/test.env mocha User/src/test/test.js --timeout 10000",
-    "play":"env-cmd -f ./User/configuration/test.env node playground.js",
+    "play": "env-cmd -f ./User/configuration/test.env node playground.js",
     "testAdmin": "env-cmd -f ./Admin/configuration/test.env mocha Admin/src/test/test.js --timeout 10000"
-
   },
   "keywords": [],
   "author": "",
@@ -23,6 +22,7 @@
     "mongoose": "^5.12.14",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
+    "twilio": "^3.64.0",
     "validator": "^13.6.0"
   },
   "devDependencies": {

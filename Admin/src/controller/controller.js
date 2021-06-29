@@ -1,5 +1,6 @@
 const amadeus=require('../Service/amadeusAuth')
-
+const Ticket=require('../database/Model/ticketModel')
+const client=require('../Service/twilio')
 module.exports.homepage = (req, res) => {
     res.send('testing');
   }
@@ -60,7 +61,12 @@ module.exports.date = async function (req, res) {
     
 module.exports.flightOrder =  async function(req, res) {
     // res.json(req.body);
-    let inputFlightCreateOrder = req.body;
+    let inputFlightCreateOrder = req.body.order;
+    let fristName=req.body.fname
+    let lastName=req.body.lname
+    let number=req.body.number
+    let email=req.body.email
+
   console.log(req.body)
   const returnBokkin = amadeus.booking.flightOrders.post(
         JSON.stringify({
@@ -72,31 +78,63 @@ module.exports.flightOrder =  async function(req, res) {
       "travelers": [
         {
           "id": "1",
-          "dateOfBirth": "2012-10-11",
-          "gender": "FEMALE",
+          // "dateOfBirth": "2012-10-11",
+          // "gender": "FEMALE",
           "contact": {
-            "emailAddress": "jorge.gonzales833@telefonica.es",
+            "emailAddress": email,
             "phones": [
               {
                 "deviceType": "MOBILE",
-                "countryCallingCode": "34",
-                "number": "480080076"
+                "countryCallingCode": "91",
+                "number": number
               }
             ]
           },
           "name": {
-            "firstName": "ADRIANA",
-            "lastName": "GONZALES"
+            "firstName": fristName,
+            "lastName": lastName
           }
         }
       ]
     }
   })
       ).then(function(response){
-      console.log(response.result);
+      console.log(response.result.data.id);
+      console.log(response.result.data.travelers[0].name.firstName);
+      console.log(response.result.data.travelers[0].contact.phones[0].number);
+      console.log(response.result.data.travelers[0].contact.emailAddress);
+           
+          client.messages
+          .create({
+            body: `Congratulation! ${response.result.data.travelers[0].name.firstName} your ticket with booking reference ID ${response.result.data.id} has been booked successfully.`,
+            from: '+17177272396',
+            to: `+91${response.result.data.travelers[0].contact.phones[0].number}`
+          })
+          .then(message => console.log(message.sid)).catch(e => { console.error('Got an error:', e.code, e.message); });
+      const ticketInfo={
+        fname:response.result.data.travelers[0].name.firstName,
+        lname:response.result.data.travelers[0].name.lastName,
+        email:response.result.data.travelers[0].contact.emailAddress,
+        ticketId:response.result.data.id
+      }
+      const ticket = new Ticket(ticketInfo)
+      addticket(ticket)
       res.json(response.result)
   }).catch(function(responseError){
       console.log(responseError);
       
   });
   }
+
+  const addticket=async(ticket)=>
+  {
+    try {
+      await ticket.save()
+      console.log(ticket)
+     }
+    catch (e) {
+       console.log(e)
+      }
+
+  }
+  // const sendSms=

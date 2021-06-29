@@ -3,6 +3,7 @@ const app=express()
 const amadeus=require('./Service/amadeusAuth')
 const PORT=process.env.PORT
 const adminRouter=require('./Service/router')
+require('./database/db/ticketInfo')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
@@ -18,7 +19,7 @@ app.use(adminRouter)
 //       console.log(responseError.code)
 //   });
 // try {
-//     amadeus.booking.flightOrder('eJzTd9cPdo9yDA0AAAurAoA%3D').delete().then(data=>console.log(data))
+//     amadeus.booking.flightOrder('eJzTd9cP9g2KiHQBAAvqAo0%3D').delete().then(data=>console.log(data))
 
 // } catch (error) {
 //     console.log(error)
