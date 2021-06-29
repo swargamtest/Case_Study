@@ -126,6 +126,48 @@ module.exports.flightOrder =  async function(req, res) {
   });
   }
 
+  module.exports.getTicketInfo = async (req, res) => {
+    try {
+      const user = await Ticket.findByEmail(req.body.email)
+      res.send({ user })
+  } catch (e) {
+      res.status(400).send(e.message)
+  }
+  }
+
+  module.exports.deleteTicket =async (req, res) => {
+    try {
+      const deleteTicket = await amadeus.booking.flightOrder(req.body.ticketId).delete()
+      const user=await Ticket.deleteOne(req.body)
+      if(user.deletedCount===1)
+      {
+        res.status(200).send(`Your ticket with reference ID ${req.body.ticketId} has been cancelled`)
+      }
+      else
+      {
+        res.status(404).send('No ticket Found')
+      }
+      
+    } catch (error) {
+       res.status(404).send('No ticket found')
+       console.log(error)
+    }
+  }
+
+  module.exports.singleTicketInfo = async (req, res) => {
+    try {
+      const ticket= await  amadeus.booking.flightOrder(req.query.ticketId).get()
+       console.log(ticket)
+       res.send(ticket)
+
+    } catch (error) {
+      res.send(error.description[0].detail)
+    }
+   
+  }
+
+
+
   const addticket=async(ticket)=>
   {
     try {
@@ -137,4 +179,3 @@ module.exports.flightOrder =  async function(req, res) {
       }
 
   }
-  // const sendSms=
