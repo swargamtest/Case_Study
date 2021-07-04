@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const offerSchema=require('../Model/flightOfferModel.js')
 
 //Connectiing to mongoose
-const con3=mongoose.createConnection('mongodb+srv://SwargamTest:Swargam123@cluster0.izarr.mongodb.net/FlightOffers?retryWrites=true&w=majority', {
+const con3=mongoose.createConnection('your db name', {
  useNewUrlParser: true,
  useCreateIndex: true,
  useUnifiedTopology: true
