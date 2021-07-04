@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const airportschema=require('../Model/airportModel')
 
 //Connectiing to mongoose
-const con2=mongoose.createConnection('mongodb+srv://SwargamTest:Swargam123@cluster0.izarr.mongodb.net/AirportData?retryWrites=true&w=majority', {
+const con2=mongoose.createConnection('your db name', {
  useNewUrlParser: true,
  useCreateIndex: true,
  useUnifiedTopology: true
