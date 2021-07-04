@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const ticketschema=require('../Models/ticketModel')
 //Connectiing to mongoose
-const con1=mongoose.createConnection(`mongodb+srv://SwargamTest:Swargam123@cluster0.izarr.mongodb.net/BookedData?retryWrites=true&w=majority`, {
+const con1=mongoose.createConnection(`your db name`, {
  useNewUrlParser: true,
  useCreateIndex: true,
  useUnifiedTopology: true
