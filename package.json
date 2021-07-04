@@ -1,0 +1,45 @@
+{
+  "name": "Case_study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "env-cmd -f ./User/configuration/dev.env nodemon User/src/index.js",
+    "dev-1": "env-cmd -f ./Admin/configuration/dev.env nodemon Admin/src/index.js",
+    "testUser": "env-cmd -f ./User/configuration/test.env mocha User/src/test/test.js --timeout 10000",
+    "play": "env-cmd -f ./User/configuration/test.env node playground.js",
+    "testAdmin": "env-cmd -f ./Admin/configuration/test.env mocha Admin/src/test/test.js --timeout 60000",
+    "airport": "env-cmd -f ./AirportSerch/configuration/dev.env nodemon AirportSerch/src/index.js",
+    "Serch": "env-cmd -f ./SerchAndBookFlight/configuration/dev.env nodemon SerchAndBookFlight/src/index.js",
+    "checkin": "env-cmd -f ./Checkin/configuration/dev.env nodemon Checkin/src/index.js",
+    "testairport": "env-cmd -f ./AirportSerch/configuration/test.env mocha AirportSerch/src/test/test.js --timeout 10000",
+    "testcheckin": "env-cmd -f ./Checkin/configuration/test.env mocha Checkin/src/test/test.js --timeout 20000",
+    "testserch": "env-cmd -f ./SerchAndBookFlight/configuration/test.env mocha SerchAndBookFlight/src/test/test.js --timeout 30000"
+
+
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.5",
+    "amadeus": "^5.7.0",
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.14",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
+    "twilio": "^3.64.0",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.0.1",
+    "nodemon": "^2.0.7"
+  }
+}
