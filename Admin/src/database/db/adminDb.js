@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 //Connectiing to mongoose
-const con4=mongoose.createConnection('mongodb+srv://SwargamTest:Swargam123@cluster0.izarr.mongodb.net/AdminData?retryWrites=true&w=majority', {
+const con4=mongoose.createConnection('Your db name', {
  useNewUrlParser: true,
  useCreateIndex: true,
  useUnifiedTopology: true
